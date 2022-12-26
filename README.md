@@ -1,3 +1,14 @@
+# !!! Secrets !!!
+
+Add environemnt.local.ts to your environments folder
+```
+export const environment = {
+  production: false,
+  OPENAI_API_KEY: '{{OPENAI_API_KEY}}',
+};
+```
+https://www.chrisjmendez.com/2017/05/24/using-dotenv-with-angular/
+
 # AngularOpenai
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.1.
