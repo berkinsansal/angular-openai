@@ -1,0 +1,20 @@
+<h3>Dall-E</h3>
+
+<form [formGroup]="openaiForm" (ngSubmit)="onSubmit()">
+
+    <div>
+        <label for="prompt">
+            Prompt
+        </label>
+        <input id="prompt" type="text" formControlName="prompt">
+    </div>
+
+    <button class="button" type="submit">Search</button>
+
+</form>
+
+<div *ngIf="imageResults">
+    <h2>Result for <em>{{submittedPrompt}}</em></h2>
+
+    <img *ngFor="let imageResult of imageResults" [src]="imageResult" alt="img">
+</div>

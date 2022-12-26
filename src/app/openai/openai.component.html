@@ -1,0 +1,22 @@
+<h3>OpenAI</h3>
+
+<form [formGroup]="openaiForm" (ngSubmit)="onSubmit()">
+
+    <div>
+        <label for="prompt">
+            Prompt
+        </label>
+        <input id="prompt" type="text" formControlName="prompt">
+    </div>
+
+    <button class="button" type="submit">Search</button>
+
+</form>
+
+<div *ngIf="completionResult">
+    <h2>Result for <em>{{submittedPrompt}}</em></h2>
+
+    <p>
+        {{completionResult}}
+    </p>
+</div>
