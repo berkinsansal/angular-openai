@@ -27,6 +27,10 @@ export class DallEComponent {
         this.openai = new OpenAIApi(configuration);
     }
 
+    uploadImage() {
+        alert('Currently unavailable feature :(');
+    }
+
     onSubmit(): void {
         const prompt = this.openaiForm.controls['prompt'].value;
         if (!prompt) {

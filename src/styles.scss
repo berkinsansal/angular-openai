@@ -134,3 +134,17 @@ app-top-bar {
         margin: 0;
     }
 }
+
+/* OpenAI */
+
+app-openai form .button-div {
+    display: flex;
+    justify-content: end;
+}
+
+/* Dall-E */
+
+app-dalle form .button-div {
+    display: flex;
+    justify-content: space-between;
+}
