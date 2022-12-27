@@ -15,8 +15,8 @@ export class DallEComponent {
     });
 
     openai: OpenAIApi;
-    submittedPrompt: string | undefined;
-    imageResults: string[] | undefined;
+    submittedPrompts: string[] = [];
+    imageResults: string[][] = [];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -37,8 +37,6 @@ export class DallEComponent {
             return;
         }
 
-        this.imageResults = undefined;
-        this.submittedPrompt = prompt;
         const createImageRequest: CreateImageRequest = {
             prompt,
             n: 2,
@@ -47,20 +45,25 @@ export class DallEComponent {
         this.openai.createImage(createImageRequest).then(response => {
             console.log(response);
             if (response?.data?.data) {
-                this.imageResults = [];
+                const images: string[] = [];
                 for (let data of response.data.data) {
                     if (data?.url) {
-                        this.imageResults.push(data.url);
+                        images.push(data.url);
                     }
                 }
+                this.submittedPrompts.unshift(prompt);
+                this.imageResults.unshift(images);
             }
         });
-        // this.imageResults = [
+
+        // for local development (without going to openai api)
+        // this.submittedPrompts.unshift(prompt);
+        // this.imageResults.unshift([
         //     'https://www.researchgate.net/profile/Tao-Chen-87/publication/3935609/figure/fig1/AS:394647298953219@1471102656485/8-bit-256-x-256-Grayscale-Lena-Image_Q320.jpg',
         //     'https://upload.wikimedia.org/wikipedia/commons/3/3e/Tree-256x256.png',
         //     'https://i.pinimg.com/originals/24/8a/45/248a452587f56539da876d6e2bd13007.png',
         //     'https://www.codinter.com/en/wp-content/uploads/sites/2/2018/01/logo-volkswagen-256x256.png',
-        // ];
+        // ]);
 
         this.openaiForm.reset();
     }

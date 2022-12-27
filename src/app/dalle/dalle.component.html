@@ -17,8 +17,8 @@
 
 </form>
 
-<div *ngIf="imageResults">
-    <h2>Result for <em>{{submittedPrompt}}</em></h2>
+<div *ngFor="let submittedPrompt of submittedPrompts; let i = index">
+    <h2>{{submittedPrompts.length - i}}) Result for <em>{{submittedPrompt}}</em></h2>
 
-    <img *ngFor="let imageResult of imageResults" [src]="imageResult" alt="img">
+    <img *ngFor="let imageResult of imageResults[i]" [src]="imageResult" alt="img">
 </div>

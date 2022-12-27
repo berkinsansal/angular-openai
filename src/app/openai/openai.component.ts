@@ -15,8 +15,8 @@ export class OpenAIComponent {
     });
 
     openai: OpenAIApi;
-    submittedPrompt: string | undefined;
-    completionResult: string | undefined;
+    submittedPrompts: string[] = [];
+    completionResults: string[] = [];
 
     constructor(
         private formBuilder: FormBuilder,
@@ -33,8 +33,6 @@ export class OpenAIComponent {
             return;
         }
 
-        this.completionResult = undefined;
-        this.submittedPrompt = prompt;
         const createCompletionRequest: CreateCompletionRequest = {
             model: 'text-ada-001',
             prompt,
@@ -47,9 +45,14 @@ export class OpenAIComponent {
         this.openai.createCompletion(createCompletionRequest).then(response => {
             console.log(response);
             if (response?.data?.choices && response.data.choices[0]?.text) {
-                this.completionResult = response.data.choices[0].text;
+                this.submittedPrompts.unshift(prompt);
+                this.completionResults.unshift(response.data.choices[0].text);
             }
         });
+
+        // for local development (without going to openai api)
+        // this.submittedPrompts.unshift(prompt);
+        // this.completionResults.unshift('response.data.choices[0].text');
 
         this.openaiForm.reset();
     }
