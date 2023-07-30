@@ -1,6 +1,6 @@
 # !!! Secrets !!!
 
-Add environemnt.local.ts to your environments folder
+Add environment.local.ts to your environments folder
 ```
 export const environment = {
   production: false,

@@ -95,7 +95,7 @@
               "browserTarget": "angular-openai:build:local-development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "local-development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
